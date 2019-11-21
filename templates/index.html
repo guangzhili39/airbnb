@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+    <meta charset="UTF-8">
+    <title>AirB&B Property Price Recommendation</title>
+</head>
+<body>
+	<h1> Airb&b Price Recommendation</h1>
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}" method="post">
+          Property name:<br><input type="text" name="name" value=""><br>
+          Owner name: <br><input type="text" name="hostname" value=""><br>
+          Owner id: <br><input type="number" name="host_id" value="1"><br>
+          Location Latitude: <br>
+         <input type="range" name="latitude" id="value1" value="40.75" min="40.51" max="40.91" step="0.01" oninput="Outvalue1.value = value1.value"/>
+         <output name="Out1" id="Outvalue1">40.75</output><br>
+         Location Longitude: <br>
+         <input type="range" name="longitude" id="value2" value="-73.89" min="-74.24" max="-73.72" step="0.01" oninput="Outvalue2.value = value2.value"/>
+         <output name="Out2" id="Outvalue2">-73.89</output><br>
+          Minimum Nights: <br><input type="number" name="minimum_nights" value=1><br>
+          Neighborhood: <br><input type="text" name="neighbourhood" value=""><br>
+          Neighborhood group:<br>
+          <select name="group">
+                <option value="Bronx">Bronx</option>
+                <option value="Brooklyn">Brooklyn</option>
+                <option value="Manhattan">Manhattan</option>
+                <option value="Queens">Queens</option>
+                <option value="Staten Island">Staten Island</option>
+          </select><br>
+            Room Type:<br>
+            <select name="room_type">
+                  <option value="Entire home/apt">Entire home/apt</option>
+                  <option value="Private room">Private room</option>
+                  <option value="Shared room">Shared room</option>
+            </select><br>
+            Vacancy Threshold: <br>
+            <input type="range" name="vacancy" id="value3" value="3" min="0" max="10" step = "1" oninput="Outvalue3.value = value3.value"/>
+            <output name="Out3" id="Outvalue3">3</output>
+            <br><br>
+        <button type="submit">Price Recommend</button>
+    </form>
+   <br>
+   {{ prediction_text }}
+
+ </div>
+</body>
+</html>
